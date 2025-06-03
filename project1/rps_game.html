@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        let computerscore = 0;
+        let humanscore = 0;
+        let userInput = prompt("Enter a number 1(rocks) , 2(paper) , 3(scissors) : ");
+        function getuserchoice(userInput){
+            if(userInput==="1"){
+                alert("you choosed rock!");
+                return "rock";
+                    
+                
+        }else if(userInput==="2"){
+            alert("you have choosen scissors!");
+            return "scissors";
+
+        }else if(userInput==="3"){
+            alert("you have choosen paper!");
+            return "paper";
+        }else{
+            alert("invalid input!");
+        }
+    };
+
+    let random = Math.floor(Math.random()*3);
+    function getcomputerchoice(){
+        if(random==1){
+            return "rocks";
+        }else if(random==2){
+            return "scissors";
+        }else if(random==3){
+            return "paper!";
+        };
+    }
+        
+
+    function playaround(computerchoice , humanchoice){
+        if(computerchoice===humanchoice){
+            return"its a tie!";
+
+        }else if(computerchoice==="rock" && humanchoice==="paper"){
+            humanscore++;
+            return"human won!";
+            
+        }else if(computerchoice==="scissors" && humanchoice==="rock"){
+            humanscore++;
+            return"human won";
+          
+
+        }else if(computerchoice==="paper" && humanchoice==="scissors"){
+            humanscore++;
+            return"human won!";
+           
+        }else{
+            computerscore++;
+            return"human lost!";
+            
+        }; }
+
+        let humanchoice = getuserchoice(userInput);
+        
+        let computerchoice = getcomputerchoice();
+        alert("Computer chose: " + computerchoice);
+        let result = playaround(computerchoice, humanchoice);
+        alert(result);
+        alert("Score\nYou: " + humanscore + " | Computer: " + computerscore);
+    
+
+
+    
+
+
+
+    
+    </script>
+</body>
+</html>
