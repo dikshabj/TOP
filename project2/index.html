@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Etch-a-Sketch</title>
+  <style>
+    .container {
+      display: grid;
+      height: 1000px;
+      width: 1000px;
+      border: 2px solid black;
+    }
+
+    .box {
+      border: 1px solid black;
+    }
+
+    .box:hover {
+      background-color: grey;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="btn">Generate Grid</button>
+  <button class="btn2">Reset</button>
+  <div class="container"></div>
+
+  <script>
+    const gridContainer = document.querySelector('.container');
+    const btn = document.querySelector('.btn');
+
+    btn.addEventListener('click', () => {
+  const boxes = prompt("Enter the size of grid you want:");
+  if (!boxes || isNaN(boxes) || boxes <= 0) {
+    alert("Please enter a valid number");
+    return;
+  }
+
+  gridContainer.innerHTML = ""; // purana grid hatao
+
+  gridContainer.style.gridTemplateColumns = `repeat(${boxes}, 1fr)`;
+  gridContainer.style.gridTemplateRows = `repeat(${boxes}, 1fr)`;
+
+  for (let i = 0; i < boxes * boxes; i++) {
+    const createBoxes = document.createElement('div');
+    createBoxes.classList.add('box');
+
+    // Mouseover event yahan add karo
+    createBoxes.addEventListener('mouseover', () => {
+      createBoxes.style.backgroundColor = 'aqua';
+    });
+
+    // Agar mouse leave pe color wapas normal karna hai toh
+    
+
+    gridContainer.appendChild(createBoxes);
+  }
+});
+
+const button2 = document.querySelector('.btn2')
+
+button2.addEventListener('click' , ()=>{
+    gridContainer.innerHTML = " ";
+});
+
+
+  </script>
+</body>
+</html>
