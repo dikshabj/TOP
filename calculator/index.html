@@ -1,99 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <style>
-        #calculator{
-            border : 2px solid black;
-            border-radius : 7px;
-            margin : 20px 20px;
-            height : 100vh;
-            width : 60vh;
+        body {
+            text-align: center;
+            background-color: black;
+
+        }
+
+        .container {
+            width: 80vh;
+            height: 100vh;
+            margin : 30%;
+           grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  
+  margin-top: 20px;
+  padding: 15px 0px;
+  border: 4px white solid;
+  border-radius: 15%;
+            
+  
+            
+            
+
+        }
+
+        .btn {
+            height: 80px;
+            width: 80px;
+            background-color :pink ;
+            color : rgb(9, 9, 9);
+            border-radius: 10%;
+            font-family: cursive;
+            font-size: 30px;
             
         }
 
-        #navbar{
-            height : 15vh;
-            width : 90%;
-            border: 2px black solid;
-            border-radius : 5px;
-            margin : 10px
+        .btn:active{
+            background-color :rgb(236, 137, 137)
         }
 
-        .boxes{
-            display : flex;
-            justify-content: center;
-            gap : 5px;
-            flex-wrap: wrap;
-        }
-        .btn{
+        .input {
+            height: 75px;
+            width: 320px;
+            background-color: rgb(163, 167, 144);
+            color : rgb(3, 1, 1);
             
-            height : 10vh;
-            width : 15vh;
+            
+            margin-top: 10px;
+            font-family:cursive;
+            font-size:45px;
+            
+            
+            
+
         }
 
+        h3{
+            font-family:cursive;
+            color : rgb(209, 188, 188);
+            font-size: 45px;
+        
 
-
+        }
     </style>
 </head>
+
 <body>
-<div id="calculator">
-    
-    <input type="text" id="navbar" readonly>
-    <div class="boxes">
-        <button class="btn" onclick="currentV = ' '; 
-        document.querySelector('#navbar').value = currentV;">c</button>
-        <button class="btn" onclick="currentV = currentV+'1';
-        document.querySelector('#navbar').value = currentV;" >1</button>
-        <button class="btn" onclick="currentV = currentV+'2'; 
-        document.querySelector('#navbar').value = currentV;" >2</button>
-        <button class="btn"
-        onclick="currentV = currentV+ '+' ;
-        document.querySelector('#navbar').value = currentV;">+</button>
-        <button class="btn" onclick="currentV = currentV+'3'; 
-        document.querySelector('#navbar').value = currentV;">3</button>
-        <button class="btn" onclick="currentV = currentV+'4';
-        document.querySelector('#navbar').value = currentV;">4</button>
-        <button class="btn" onclick="currentV = currentV+ '-';
-        document.querySelector('#navbar').value = currentV;">-</button>
-        <button class="btn" onclick="currentV = currentV+ '5';
-        document.querySelector('#navbar').value = currentV;">5</button>
-        <button class="btn" onclick="currentV = currentV+ '6'; 
-        document.querySelector('#navbar').value = currentV;">6</button>
-        <button class="btn" onclick="currentV = currentV+ '*';
-        document.querySelector('#navbar').value = currentV;">*</button>
-        <button class="btn" onclick="currentV = currentV+'7'; 
-        document.querySelector('#navbar').value = currentV;">7</button>
-        <button class="btn" onclick="currentV = currentV+ '8';
-        document.querySelector('#navbar').value = currentV;">8</button>
-        <button class="btn" onclick="currentV = currentV+'/'; 
-        document.querySelector('#navbar').value = currentV;">/</button>
-        <button class="btn" onclick="; 
-       
-let result = eval(currentV); //eval ksi bhi string ko expression ki trh evaluate krta h
-currentV = result;
-document.querySelector('#navbar').value = currentV;
 
-
-        ">
-        =</button>
-        <button class="btn" onclick="currentV = currentV+'9'; 
-        document.querySelector('#navbar').value = currentV;">9</button>
-        <button class="btn" onclick="currentV = currentV+'0';
-        document.querySelector('#navbar').value = currentV;">0</button>
-        <button class="btn" onclick="currentV = currentV+'.';
-        document.querySelector('#navbar').value = currentV;">.</button>
+<h3>CALCULATOR</h3>
+    <div class="container">
+        <input type="number" class="input" readonly>
         
+       
+        <button class="btn" id="btn1">1</button>
+        <button class="btn" id="btn2">2</button>
+
+        <button class="btn" id="btn3">3</button>
+        <button class="btn" id="btnplus">+</button>
+        <button class="btn" id="btn4">4</button>
+        <button class="btn" id="btn5">5</button>
+        <button class="btn" id="btn6">6</button>
+        <button class="btn" id="btnminus">-</button>
+
+        <button class="btn" id="btn7">7</button>
+        <button class="btn" id="btn8">8</button>
+
+        <button class="btn" id="btn9">9</button>
+        <button class="btn" id="btnstar">*</button>
+        <button class="btn" id="btn0">0</button>
+
+
+        <button class="btn" id="btndel">Del</button>
+        <button class="btn" id="btnequal">=</button>
+        <button class="btn" id="btndivide">/</button>
+         <button class="btn" id="btnc">C</button>
+
+
     </div>
-</div> 
+
+
+
 
 
     <script>
-let currentV = " "; //ek variable jo calculator ke current input ko store krega, jise navbar input field me dikhaya jayega
-document.querySelector('#navbar').value = currentV;
+        function operate(operater, a, b) {
+            if (operater == '+') return a + b;
+            else if (operater == '-') return a - b;
+            else if (operater == '*') return a * b;
+            else if (operator == '/') return a / b;
+            else return 'Invalid!'
+
+        };
+
+        const display = document.querySelector('.input');
+        const btn1 = document.querySelector('#btn1');
+        const btnc = document.querySelector('#btnc');
+        const btn2 = document.querySelector('#btn2');
+        const btnplus = document.querySelector('#btnplus');
+        const btn3 = document.querySelector('#btn3');
+        const btn4 = document.querySelector('#btn4');
+        const btn5 = document.querySelector('#btn5');
+        const btnminus = document.querySelector('#btnminus');
+        const btn6 = document.querySelector('#btn6');
+        const btn7 = document.querySelector('#btn7');
+        const btn8 = document.querySelector('#btn8');
+        const btn9 = document.querySelector('#btn9');
+        const btn0 = document.querySelector('#btn0');
+        const btnequal = document.querySelector('#btnequal');
+        const btndivide = document.querySelector('#btndivide');
+        let displayVal = display.value;
+
+        let firstoperand = '';
+        let secondoperand = '';
+        let currentoperator = '';
+        let issecondoperand = false;
+
+
+        function handlebutton(num) {
+            if (!issecondoperand) {
+                firstoperand += num;
+                display.value = firstoperand;
+            } else {
+                secondoperand += num;
+                display.value = secondoperand;
+            }
+            return display.value;
+
+        };
+
+        btn1.addEventListener('click', () => { handlebutton(1) });
+
+        btnc.addEventListener('click', () => {
+            firstoperand = '';
+            secondoperand = '';
+
+            display.value = '';
+            ;
+        })
+
+
+        btn2.addEventListener('click', () => { handlebutton(2); });
+        btnplus.addEventListener('click', () => {
+            currentoperator = '+';
+            issecondoperand = true;
+            ;
+        })
+        btn3.addEventListener('click', () => { handlebutton(3); });
+        btn4.addEventListener('click', () => { handlebutton(4); });
+        btn5.addEventListener('click', () => { handlebutton(5); })
+        btnminus.addEventListener('click', () => {
+            currentoperator = '-';
+            issecondoperand = true;;
+        })
+        btn6.addEventListener('click', () => { handlebutton(6) })
+        btn7.addEventListener('click', () => { handlebutton(7); })
+        btn8.addEventListener('click', () => { handlebutton(8) })
+        btn9.addEventListener('click', () => { handlebutton(9) })
+        btn0.addEventListener('click', () => { handlebutton(0) })
+        btnequal.addEventListener('click', () => {
+            const a = Number(firstoperand);
+            const b = Number(secondoperand);
+
+            if (currentoperator === '/' && b === 0) {
+                alert("YOU CAN'T DO THAT!!")
+                display.value = "Error: Division by 0";
+                return;
+            }
+            let result = operate(currentoperator, a, b);
+            display.value = result;
+
+            // Reset for next operation
+            firstoperand = result;
+            secondoperand = '';
+            issecondoperand = false;
+
+        })
+        btndivide.addEventListener('click', () => {
+            currentoperator = '/';
+            issecondoperand = true;
+
+
+        });
+        btnstar.addEventListener('click', () => {
+            currentoperator = '*';
+            issecondoperand = true;
+        });
+
+        btndel.addEventListener('click', () => {
+            if (issecondoperand == false) {
+                firstoperand = firstoperand.slice(0, -1);
+                display.value = firstoperand
+            } else {
+                secondoperand = secondoperand.slice(0, -1);
+                display.value = secondoperand;
+            }
+        });
+
+
+
+
 
     </script>
+
 </body>
+
 </html>
