@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Mystery+Quest&family=Poiret+One&display=swap"
+        rel="stylesheet">
+    <title>Library</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poiret One', sans-serif;
+        }
+
+        body {
+            background-color: black;
+
+
+        }
+
+        .navbar {
+            width: 100%;
+            height: 20vh;
+
+            margin-top: 0px;
+            background-color: rgb(55, 107, 55);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .heading {
+            font-family: "Mystery Quest", system-ui;
+            color: white;
+            background-color: rgb(55, 107, 55);
+            letter-spacing: 3px;
+
+        }
+
+        /* .card{
+            width : 35%;
+            height : 40%;
+            background-color: rgb(129, 225, 129);
+            color : rgb(6, 6, 6);
+            border : 2px solid rgb(6, 6, 6);
+            padding : 10px;
+            font-weight: bold;
+            border-radius : 10px;
+            margin-left : 40%;
+            margin-top : 5%;} */
+
+        .card {
+            width: 35%;
+            max-width: 250px;
+            background-color: rgb(129, 225, 129);
+            color: rgb(6, 6, 6);
+            border: none;
+            padding: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+
+            /* Center the card horizontally */
+            margin: 5% auto;
+            margin-top: 10%;
+
+            /* Add a subtle shadow for better visibility on mobile */
+            box-shadow: 0 4px 8px rgba(253, 227, 227, 0.2);
+        }
+
+        .card input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgb(91, 191, 98);
+            transform: scale(1.1);
+
+        }
+
+        .form {
+            margin: 0;
+        }
+
+        .addbooks {
+            width: 100%;
+            padding: 2px;
+            box-sizing: border-box;
+            font-weight: bolder;
+            background-color: rgb(16, 70, 13);
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .addbooks:hover {
+            cursor: pointer;
+
+        }
+
+        .addbtn {
+            background-color: rgb(80, 205, 84);
+
+            padding: 0;
+            width: 10%;
+            font-size: 30px;
+            font-weight: 900;
+
+            border: none;
+
+
+        }
+
+        .addbtn:hover {
+            cursor: pointer;
+            box-shadow: 3px 3px 3px rgb(120, 163, 120);
+            transform: scale(1.1);
+
+
+        }
+
+        .removebooks {
+            width: 100%;
+            padding: 2px;
+            box-sizing: border-box;
+            font-weight: bolder;
+            background-color: rgb(85, 133, 18);
+            border: none;
+            border-radius: 5px;
+            color: white;
+
+        }
+    </style>
+</head>
+
+<body>
+    <navbar>
+        <div class="navbar">
+            <h2 class="heading">LIBRARY</h2>
+        </div>
+
+
+
+    </navbar>
+
+    <button class="addbtn" onclick="toggle();">+</button>
+
+
+
+    <div class="card" id="formCard" style="display : none;">
+        <form id="formBook">
+            <label for="bookName">Book Name:</label>
+            <input type="text" id="bookName" name="bookName" required>
+
+            <label for="authorName">Author Name:</label>
+            <input type="text" id="authorName" name="authorName" required>
+            <br>
+            <label>Have you read it?</label>
+            <br>
+            <div class="radio-group">
+                <input type="radio" id="readYes" name="readStatus" value="Yes" required>
+                <label for="readYes">Yes</label>
+
+
+                <input type="radio" id="readNo" name="readStatus" value="No">
+                <label for="readNo">No</label>
+            </div>
+            <br>
+
+            <button class="addbooks" type="button" onclick="addBookToLibrary();">Add Book</button>
+            <button class="removebooks">Remove Book</button>
+
+
+        </form>
+
+
+
+    </div>
+    <div class="Bookcards"></div>
+
+
+    <script>
+
+        let library = [];
+        let mylib = document.querySelector(".Bookcards");
+
+
+        function books(title, author, haveRead, notRead) {
+            this.title = title;
+            this.author = author;
+            this.haveRead = haveRead;
+            this.notRead = notRead;
+
+
+        };
+        function toggle() {
+            let block = document.querySelector('#formCard');
+            block.style.display = block.style.display === "none" ? "block" : "none";
+        }
+
+        function addBookToLibrary() {
+            let title = document.querySelector('#bookName').value;
+            let author = document.querySelector('#authorName').value;
+            let haveRead = document.querySelector('#readYes').checked;
+            let notRead = document.querySelector('#readNo').checked;
+
+            let newBook = new books(title, author, haveRead, notRead);
+
+            library.push(newBook);
+            displayBook();
+        }
+
+        function removeBook(index) {
+
+            library.splice(index, 1);
+            displayBook();
+        }
+
+
+        function displayBook() {
+            mylib.innerHTML = " ";
+
+
+            for (let i = 0; i < library.length; i++) {
+                let node = document.createElement("div");
+                let content = `<p>Book Name : ${library[i].title}</p>
+                <p>Author Name : ${library[i].author}</p>
+                <p>${library[i].haveRead ? "Finished" : "Not read yet"} </p>
+                <button onclick="removeBook(${i});">Remove</button> `;
+
+                node.innerHTML = content;
+                node.classList.add("card");
+                mylib.append(node);
+
+            }
+
+
+
+
+        }
+
+    </script>
+
+</body>
+
+</html>
