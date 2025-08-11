@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRNE SE HI HONA HAI</title>
+    <style>
+        .btn1{
+            height : 20px;
+            width : 50px;
+            padding : 3px;  
+        }
+
+        .btn2{
+             height : 20px;
+            width : 50px;
+         
+            
+        }
+
+    
+        .divs2{
+            display : flex;
+            align-items : center;
+            
+            justify-content: flex-start;
+            gap : 10px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="divs">
+        <input type="text" class="input_place">
+    <button class="btn1"></button>
+    <p class="para">
+</p>
+
+        
+    </div>
+    
+
+    
+
+    <script>
+
+       let btn = document.querySelector(".btn1");
+       let para = document.querySelector(".para");
+
+        btn.addEventListener("click", ()=>{
+            let input = document.querySelector(".input_place");
+             
+            
+            let value_input = document.querySelector(".input_place").value;
+            
+            para.innerHTML = `
+            <div class="divs2">
+            <h3>${value_input}</h3>
+            <button class="btn2" onClick="remove();">Del</button>
+            </div>`
+            
+
+
+
+        });
+
+        function remove(){
+            para.innerHTML = " ";
+        }
+             
+
+        
+
+
+    </script>
+</body>
+</html>
