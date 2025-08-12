@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KRNE SE HI HONA HAI</title>
     <style>
+
+        body{
+            text-align: center;
+
+        }
         .btn1{
             height : 20px;
             width : 50px;
@@ -23,7 +28,8 @@
             display : flex;
             align-items : center;
             
-            justify-content: flex-start;
+            justify-content: center;
+            border : 2px black solid;
             gap : 10px;
         }
 
@@ -47,28 +53,44 @@
 
        let btn = document.querySelector(".btn1");
        let para = document.querySelector(".para");
+       let input = document.querySelector(".input_place");
+       
+
+       let allInputs = [];
+
+          para.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn2")) {
+        e.target.parentElement.remove();
+    }
+});
 
         btn.addEventListener("click", ()=>{
-            let input = document.querySelector(".input_place");
+            
              
             
-            let value_input = document.querySelector(".input_place").value;
+            let value_input = input.value;
+
+            allInputs.push(value_input);
             
-            para.innerHTML = `
+
+           
+            
+            para.innerHTML += `
             <div class="divs2">
-            <h3>${value_input}</h3>
-            <button class="btn2" onClick="remove();">Del</button>
+            <div class="value1"> ~${value_input}</div>
+            <button class="btn2" >Del</button>
             </div>`
             
+            
+            
+            
 
-
+        
 
         });
+    
 
-        function remove(){
-            para.innerHTML = " ";
-        }
-             
+     
 
         
 
